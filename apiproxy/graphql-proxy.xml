@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="5" name="graphql-proxy">
+    <Basepaths>/graphql</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1571630283309</CreatedAt>
+    <CreatedBy>miguelmendoza@google.com</CreatedBy>
+    <Description>Performs OAuth and authZ before passing along to GraphQL server</Description>
+    <DisplayName>graphql-proxy</DisplayName>
+    <LastModifiedAt>1571630283309</LastModifiedAt>
+    <LastModifiedBy>miguelmendoza@google.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:13db61aa4014c3186029ebf92626f08ae9be46c3fadbb2319e3616b2cfe1cddc42a712ce79414ef061bb76e8160a0f804db004b57a82f8a022c9cb922eee3549</ManifestVersion>
+    <Policies>
+        <Policy>AM-AddCORS</Policy>
+        <Policy>AM-GetQueryFromQueryParam</Policy>
+        <Policy>AM-SetAXHeaders</Policy>
+        <Policy>AM-SetTarget</Policy>
+        <Policy>EV-GetQueryFromPayload</Policy>
+        <Policy>JS-GraphQLAuthZ</Policy>
+        <Policy>JS-ScopesToEntitlements</Policy>
+        <Policy>KVM-GetConfig</Policy>
+        <Policy>OA-VerifyAccessToken</Policy>
+        <Policy>RF-BadMethod</Policy>
+        <Policy>RF-BadRequest</Policy>
+        <Policy>RF-SetupCORSFault</Policy>
+        <Policy>RF-UnAuthorizedGraphQL</Policy>
+        <Policy>VAK-VerifyAPIKey</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://graphql.jsc.js</Resource>
+        <Resource>jsc://scopesToEntitlements.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

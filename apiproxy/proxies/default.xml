@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="GraphQLAuthZ">
+            <Condition>(graphql.authz.authorized = "false")</Condition>
+            <Step>
+                <Name>AM-AddCORS</Name>
+            </Step>
+            <Step>
+                <Name>RF-UnAuthorizedGraphQL</Name>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule>
+        <Step>
+            <Name>AM-AddCORS</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request/>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="OPTS-CORS">
+            <Condition>(proxy.pathsuffix ~~ ".*") and (request.verb = "OPTIONS")</Condition>
+            <Request>
+                <Step>
+                    <Name>RF-SetupCORSFault</Name>
+                </Step>
+            </Request>
+            <Response/>            
+        </Flow>
+        <Flow name="POST-GraphQLFlow">
+            <Condition>(proxy.pathsuffix ~~ ".*") and (request.verb = "POST")</Condition>
+            <Request>
+                <Step>
+                    <Name>OA-VerifyAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>VAK-VerifyAPIKey</Name>
+                </Step>
+                <Step>
+                    <Name>EV-GetQueryFromPayload</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-GetConfig</Name>
+                </Step>
+                <Step>
+                    <Name>JS-ScopesToEntitlements</Name>
+                </Step>
+                <Step>
+                    <Name>JS-GraphQLAuthZ</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAXHeaders</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+        <Flow name="GET-GraphQLFlow">
+            <Condition>(proxy.pathsuffix ~~ ".*")  and (request.verb = "GET")</Condition>
+            <Request>
+                <Step>
+                    <Name>OA-VerifyAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>VAK-VerifyAPIKey</Name>
+                </Step>
+                <Step>
+                    <Name>AM-GetQueryFromQueryParam</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-GetConfig</Name>
+                </Step>
+                <Step>
+                    <Name>JS-ScopesToEntitlements</Name>
+                </Step>
+                <Step>
+                    <Name>JS-GraphQLAuthZ</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAXHeaders</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+        <Flow name="ERR-BadMethod">
+            <Description/>
+            <Condition>!(request.verb ~~ "^(POST|GET)$")</Condition>
+            <Request>
+                <Step>
+                    <Name>RF-BadMethod</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+        <Flow name="ERR-BadRequest">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>RF-BadRequest</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>AM-AddCORS</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/graphql</BasePath>
+        <Properties/>
+        <VirtualHost>default</VirtualHost>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

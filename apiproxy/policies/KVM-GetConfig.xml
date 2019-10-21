@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-GetConfig" mapIdentifier="graphql">
+    <DisplayName>KVM-GetConfig</DisplayName>
+    <Properties/>
+    <Get assignTo="graphql_entitlements_map">
+        <Key>
+            <Parameter>entitlements_map_json</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="graphql_target_endpoint">
+        <Key>
+            <Parameter>target_backend</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

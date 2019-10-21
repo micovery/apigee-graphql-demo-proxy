@@ -1,0 +1,34 @@
+{
+  "instrospect": [
+    "query.__schema.**"
+  ],
+  "reader": [
+    "query.__schema.**",
+    "query.resorts.**"
+  ],
+  "site:admin": [
+    "query.__schema.**",
+    "query.resorts.**",
+    "mutation.resorts.create.**",
+    "mutation.resorts.delete.**",
+    "mutation.resorts.update.**"
+  ],
+  "resort:admin": [
+    "query.__schema.**",
+    "query.resorts.**",
+    "mutation.resorts.update.**",
+    "mutation.resorts.update.lifts.create.**",
+    "mutation.resorts.update.lifts.update.**",
+    "mutation.resorts.update.lifts.delete.**",
+    "mutation.resorts.update.trails.create.**",
+    "mutation.resorts.update.trails.update.**",
+    "mutation.resorts.update.trails.delete.**"
+  ],
+  "resort:manager": [
+    "query.__schema.**",
+    "query.resorts.**",
+    "mutation.resorts.update.resort.**",
+    "mutation.resorts.update.lifts.update.**",
+    "mutation.resorts.update.trails.update.**"
+  ]
+}

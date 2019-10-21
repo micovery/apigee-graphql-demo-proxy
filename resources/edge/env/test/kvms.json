@@ -1,0 +1,15 @@
+[
+  {
+    "entry": [
+      {
+        "name": "entitlements_map_json",
+        "value": "${entitlements_map_json}"
+      },
+      {
+        "name": "target_backend",
+        "value": "${target_backend}"
+      }
+    ],
+    "name": "graphql"
+  }
+]

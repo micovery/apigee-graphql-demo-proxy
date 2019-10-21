@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetAXHeaders">
+    <DisplayName>AM-SetAXHeaders</DisplayName>
+    <Properties/>
+    <Add>
+        <Headers>
+            <Header name="Apigee-analytics-url">https://edgemicroservices.apigee.net/edgemicro/axpublisher/organization/{organization.name}/environment/{environment.name}</Header>
+            <Header name="Apigee-proxy-name">{apiproxy.name}</Header>
+            <Header name="Apigee-proxy-rev">{apiproxy.revision}</Header>
+            <Header name="Apigee-request-verb">{request.verb}</Header>
+            <Header name="Apigee-developer-app-name">{verifyapikey.VAK-VerifyAPIKey.developer.app.name}</Header>
+            <Header name="Apigee-developer-email">{verifyapikey.VAK-VerifyAPIKey.developer.email}</Header>
+            <Header name="Apigee-client-id">{verifyapikey.VAK-VerifyAPIKey.client_id}</Header>
+        </Headers>
+    </Add>
+
+    <AssignTo createNew="false" type="request"/>
+</AssignMessage>
