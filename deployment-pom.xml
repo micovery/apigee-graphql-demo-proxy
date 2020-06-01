@@ -40,12 +40,13 @@
                             <source>
                                 import groovy.json.JsonBuilder as JB;
                                 import groovy.json.JsonSlurper as JS;
+                                import groovy.json.JsonOutput as JO;
 
                                 def stringify_json_file(file_path) {
                                     def text = (new File(file_path)).getText()
                                     def obj = (new JS()).parseText(text)
-                                    def result = new JB(new JB(obj).toString()).toString();
-                                    return result.substring(1,result.size() - 1);
+                                    def result = new JB(new JB(obj).toPrettyString()).toPrettyString()
+                                    return result.substring(1,result.size() - 1)
                                 }
 
                                 project.properties.entitlements_map_json = stringify_json_file(this.properties.entitlements_map_file);
@@ -101,7 +102,7 @@
                             <outputDirectory>${basedir}/target/resources/edge/env/${apigee.env}</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${basedir}/target/resources/edge/env/test</directory>
+                                    <directory>${basedir}/resources/edge/env/${apigee.env}</directory>
                                     <filtering>true</filtering>
                                 </resource>
                             </resources>

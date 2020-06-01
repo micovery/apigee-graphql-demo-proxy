@@ -4,31 +4,37 @@
   ],
   "reader": [
     "query.__schema.**",
-    "query.resorts.**"
+    "query.resorts.snow_condition",
+    "query.resorts.name",
+    "query.resorts.id"
   ],
   "site:admin": [
     "query.__schema.**",
-    "query.resorts.**",
-    "mutation.resorts.create.**",
-    "mutation.resorts.delete.**",
-    "mutation.resorts.update.**"
+    "mutation.resorts",
+    "mutation.resorts.**",
+    "query.resorts",
+    "query.resorts.**"
   ],
   "resort:admin": [
     "query.__schema.**",
-    "query.resorts.**",
+    "mutation.resorts.update",
     "mutation.resorts.update.**",
-    "mutation.resorts.update.lifts.create.**",
-    "mutation.resorts.update.lifts.update.**",
-    "mutation.resorts.update.lifts.delete.**",
-    "mutation.resorts.update.trails.create.**",
-    "mutation.resorts.update.trails.update.**",
-    "mutation.resorts.update.trails.delete.**"
+    "mutation.resorts.update.lifts",
+    "mutation.resorts.update.lifts.**",
+    "mutation.resorts.update.trails",
+    "mutation.resorts.update.trails.**",
+    "query.resorts",
+    "query.resorts.**"
   ],
   "resort:manager": [
     "query.__schema.**",
-    "query.resorts.**",
-    "mutation.resorts.update.resort.**",
+    "mutation.resorts.update.lifts.update",
     "mutation.resorts.update.lifts.update.**",
-    "mutation.resorts.update.trails.update.**"
+    "mutation.resorts.update.trails.update",
+    "mutation.resorts.update.trails.update.**",
+    "mutation.resorts.update.resort",
+    "mutation.resorts.update.resort.**",
+    "query.resorts",
+    "query.resorts.**"
   ]
 }

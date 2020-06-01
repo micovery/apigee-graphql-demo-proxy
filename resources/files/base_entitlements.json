@@ -1,0 +1,17 @@
+{
+  "instrospect": [
+    "query.__schema.**"
+  ],
+  "reader": [
+    "query.__schema.**"
+  ],
+  "site:admin": [
+    "query.__schema.**"
+  ],
+  "resort:admin": [
+    "query.__schema.**"
+  ],
+  "resort:manager": [
+    "query.__schema.**"
+  ]
+}
